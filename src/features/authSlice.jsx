@@ -58,3 +58,4 @@ export default authSlice.reducer;
 
 //! login işlemide olsa register işlemide olsa logout işlemide olsa fetchStart, fetchFail işlemi ortak sadece başarılı olma durumları farklı loginSuccess, logoutSuccess, registerSuccess yapımız bu şekilde.
 // fetchStart ve fetchFail ortak (başlama ve hatalı durumu)
+// dispatch ile reducer ları istediğimiz terde çagırabiliyoruz.

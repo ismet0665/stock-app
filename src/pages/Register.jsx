@@ -62,12 +62,13 @@ const Register = () => {
             }}
             validationSchema={registerSchema}
             onSubmit={(values, actions) => {
-              register({ ...values, password2: values.password }); //useAuthCall sayfasında register func. çagırdık.
+              register({ ...values, password2: values.password }); //useAuthCall sayfasında register func. çagırdık. register işleminde 2 tane password(dogrulama passwordu) var fakat register olurken tek password giriyoruz. bu yüzden password2 ye password u eşitledik.
               actions.resetForm();
               actions.setSubmitting(false);
             }}
             component={(props) => <RegisterForm {...props} />}
           ></Formik>
+
           <Box sx={{ textAlign: "center", mt: 2 }}>
             <Link to="/">Do you have an account?</Link>
           </Box>
