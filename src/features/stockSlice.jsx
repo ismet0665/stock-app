@@ -21,7 +21,18 @@ const stockSlice = createSlice({
     getSuccess: (state, { payload: { data, url } }) => {
       state.loading = false;
       state[url] = data;
+      // state.url = data;  bu şekilde kullanamayız. Çünkü state in içinde url diye bir key arar. [] square breaket ile değişkenlerimizi kullanıyoruz.
     },
+    // getSuccess func. dinamik hale getirdik. yoksa her state için ayrı ayrı getSuccess func. yazacaktık.
+    // ! url bizim state lerimizin adı.  dispatch(getSuccess({ data, url })) veriyi bu formatta göndermemiz lazım.
+    // getSuccessSales: (state, { payload }) => {
+    //   state.loading = false
+    //   state.sales = payload
+    // },
+    // getSuccesPurchase: (state, { payload }) => {
+    //   state.loading = false
+    //   state.purchases = payload
+    // },
 
     fetchFail: (state) => {
       state.loading = false;

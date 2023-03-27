@@ -81,4 +81,4 @@ export default useAuthCall;
 // useAuthCall export edip kullanılan yerde import ederek istedigimiz func.(login,register,logout u) kullanabiliriz.
 //? custom Hookların klasörü hooks diye yazılır.
 //? CustomHook jsx değil sadece fonk dödürüyor ve use ıle başlıyor. ve içinde başka hookları use... ları kullanabılırız.
-
+//! custom hookların jsx return nu yok func. ve değişken return nu var.
