@@ -1,8 +1,9 @@
 import { Button, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import FirmCard from "../components/FirmCard";
+import FirmModal from "../components/modals/FirmModal";
 import useStockCall from "../hooks/useStockCall";
 import { flex } from "../styles/globalStyle";
 
@@ -33,6 +34,16 @@ const Firms = () => {
 
   const { getStockData } = useStockCall(); //useStockCall custom hook undan getStockData func. desc ettik.
   const { firms } = useSelector((state) => state.stock); //state den verileri useSelector ile çektik.
+  const [open, setOpen] = useState(false);
+  const [info, setInfo] = useState({
+    name: "",
+    phone: "",
+    address: "",
+    image: "",
+  });
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     // getFirms()
@@ -47,12 +58,20 @@ const Firms = () => {
         Firm
       </Typography>
 
-      <Button variant="contained">New Firm</Button>
+      <Button variant="contained" onClick={handleOpen}>
+        New Firm
+      </Button>
 
+      <FirmModal
+        open={open}
+        handleClose={handleClose}
+        info={info}
+        setInfo={setInfo}
+      />
       <Grid container sx={flex} mt={2}>
         {firms?.map((firm) => (
           <Grid item key={firm.id}>
-            <FirmCard firm={firm} />
+            <FirmCard firm={firm} setOpen={setOpen} setInfo={setInfo} />
           </Grid>
         ))}
       </Grid>
@@ -68,4 +87,9 @@ Read => manager olmasına gerek yok
 Create-Update-Delete => manager grubunda olması lazım
 Bütün işlemlerde header altında token gönderilmesi gerekiyor
 
+<FirmCard firm={firm} setOpen={setOpen} setInfo={setInfo} /> 
+setOpen={setOpen} edit butonuna tıklanınca açılması için props olarak FirmCarda yolladık.
+setInfo={setInfo} ise edit butonuna tıklanınca açılan modal da bilgilerin gelmesi için.
+
+* setInfo={setInfo}  state i normalde FİrmModal da bulunuyordu. FirmCard da setInfo state ine ihtiyaç olunca state i Fİrm.jsx e taşıdık sonra props ile FirmCard ve FirmModal a gönderdik.
 */

@@ -12,7 +12,7 @@ import useStockCall from "../hooks/useStockCall";
 
 // https://mui.com/material-ui/react-card/
 
-export default function FirmCard({ firm }) {
+export default function FirmCard({ firm, setOpen, setInfo }) {
   const { deleteStockData } = useStockCall();
 
   return (
@@ -46,7 +46,13 @@ export default function FirmCard({ firm }) {
       </Typography>
 
       <CardActions sx={flex}>
-        <EditIcon sx={btnStyle} />
+        <EditIcon
+          sx={btnStyle}
+          onClick={() => {
+            setOpen(true);
+            setInfo(firm); // setInfo ya firm a bilgisini vermemiz lazım ki edit kısmında ilgili yeri editleyebilelim. setInfo güncellenirse FirmModal daki info?.name, info?.phone, info?.address , info?.image ilgili firmanın bilgisi ile güncellenir.
+          }}
+        />
         <HighlightOffIcon
           sx={btnStyle}
           onClick={() => deleteStockData("firms", firm.id)}
