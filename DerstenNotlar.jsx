@@ -33,4 +33,7 @@ onSubmit={(values, actions) => {  //! values initialValues={{ email: "", passwor
 
 regex => https://medium.com/fedeveloper/regex-hakk%C4%B1nda-2c4e80501802
 
+
+
+https://www.tremor.so/docs/components/select
 */
