@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-DerstenNotlar.jsx
-/DerstenNotlar.jsx
-/DerstenNotlar
+
+DerstenNotlar2.jsx
+DerstenNotlar1.jsx
 # dependencies
 /node_modules
 /.pnp
