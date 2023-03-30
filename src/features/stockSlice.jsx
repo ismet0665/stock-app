@@ -8,7 +8,7 @@ const stockSlice = createSlice({
     sales: null,
     brands: null,
     firms: null,
-    products: null,
+    products: [],
     categories: null,
     loading: false,
     error: false,
@@ -34,6 +34,13 @@ const stockSlice = createSlice({
     //   state.purchases = payload
     // },
 
+    getProCatBrandSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.products = payload[0]; //products. dizinin[0] indisi products
+      state.categories = payload[1]; //categories
+      state.brands = payload[2]; //brands
+    },
+
     fetchFail: (state) => {
       state.loading = false;
       state.error = true;
@@ -41,7 +48,8 @@ const stockSlice = createSlice({
   },
 });
 
-export const { fetchStart, getSuccess, fetchFail } = stockSlice.actions;
+export const { fetchStart, getSuccess, fetchFail, getProCatBrandSuccess } =
+  stockSlice.actions;
 export default stockSlice.reducer;
 
 // stockSlice stock taki verileri getirceğiz. api deki verileri çekip redux a atacagız sayfanın istenilen yerinde kullanacagız. her ihtiyaç oldugunda her defasında api den veri çekmektense bir kere çekip kullancaz. istek zaman alan bir işlem.

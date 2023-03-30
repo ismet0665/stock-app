@@ -1,6 +1,11 @@
 // import axios from "axios"
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFail, getSuccess, fetchStart } from "../features/stockSlice";
+import {
+  fetchFail,
+  getSuccess,
+  fetchStart,
+  getProCatBrandSuccess,
+} from "../features/stockSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import useAxios from "./useAxios";
 
@@ -66,7 +71,34 @@ const useStockCall = () => {
     }
   };
 
-  return { getStockData, deleteStockData, postStockData, putStockData };
+  //! 1- Promise.all ile dizi içerisinde birden fazla istek atabiliyoruz. const [products, categories, brands] gelen datalarıda dizi içerisinde alıyoruz.sıra önemli ilk istek dizinin ilk elemanına gelir.
+
+  const getProCatBrand = async () => {
+    dispatch(fetchStart());
+    try {
+      const [products, categories, brands] = await Promise.all([
+        axiosWithToken.get("stock/products/"),
+        axiosWithToken.get("stock/categories/"),
+        axiosWithToken.get("stock/brands/"),
+      ]);
+      //! 2- yukarda istek attık veriler geldi gelen verileride redux state e gönderdik. dispatch(getSuccess({ data, url })); bu formata verimiz uygun olmadıgı için(data mız dizi url 3 tane) yeni bir action yazdık getProCatBrandSuccess.
+      dispatch(
+        getProCatBrandSuccess([products?.data, categories?.data, brands?.data])
+      );
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchFail());
+      toastErrorNotify(`Data can not be fetched`);
+    }
+  };
+
+  return {
+    getStockData,
+    deleteStockData,
+    postStockData,
+    putStockData,
+    getProCatBrand,
+  };
 };
 
 export default useStockCall;
