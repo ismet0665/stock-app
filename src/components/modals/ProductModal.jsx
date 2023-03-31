@@ -12,7 +12,6 @@ import useStockCall from "../../hooks/useStockCall";
 import { useSelector } from "react-redux";
 // modal için select
 // https://mui.com/material-ui/react-select/
-
 export default function ProductModal({ open, handleClose, info, setInfo }) {
   const { postStockData } = useStockCall();
   const { categories, brands } = useSelector((state) => state.stock);
