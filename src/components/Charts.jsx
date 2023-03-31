@@ -1,21 +1,24 @@
-import { Card, Title, LineChart } from "@tremor/react"
-import { useSelector } from "react-redux"
-import { Grid } from "@mui/material"
+import { Card, Title, LineChart } from "@tremor/react";
+import { useSelector } from "react-redux";
+import { Grid } from "@mui/material";
+
+// https://www.tremor.so/docs/components/line-chart
+
 const dataFormatter = (number) =>
-  `${Intl.NumberFormat("us").format(number).toString()}`
+  `${Intl.NumberFormat("us").format(number).toString()}`;
 
 const Charts = () => {
-  const { sales, purchases } = useSelector((state) => state.stock)
+  const { sales, purchases } = useSelector((state) => state.stock);
 
   const salesData = sales.map((item) => ({
     date: item.createds,
     sale: Number(item.price_total),
-  }))
+  }));
 
   const purchasesData = purchases?.map((item) => ({
     date: item.createds,
     purchases: Number(item.price_total),
-  }))
+  }));
 
   return (
     <Grid container justifyContent="center" spacing={2} mt={3}>
@@ -44,6 +47,6 @@ const Charts = () => {
         </Card>
       </Grid>
     </Grid>
-  )
-}
-export default Charts
+  );
+};
+export default Charts;
