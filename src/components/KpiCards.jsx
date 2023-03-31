@@ -1,22 +1,28 @@
-import { Avatar, Box, Grid, Paper, Typography } from "@mui/material"
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn"
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
-import PaymentsIcon from "@mui/icons-material/Payments"
-import { amber, deepPurple, pink } from "@mui/material/colors"
-import { useSelector } from "react-redux"
+import { Avatar, Box, Grid, Paper, Typography } from "@mui/material";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PaymentsIcon from "@mui/icons-material/Payments";
+import { amber, deepPurple, pink } from "@mui/material/colors";
+import { useSelector } from "react-redux";
 
+// https://mui.com/material-ui/react-paper/
+// https://mui.com/material-ui/react-avatar/  avatarın içine icon koyduk.
+// https://recharts.org/en-US/ grafik için
+// https://www.tremor.so/ grafik için bu güzel...
+// https://www.tremor.so/docs/getting-started/installation  ADMİn panel için kullanılabilir.
 const KpiCards = () => {
-  const { sales, purchases } = useSelector((state) => state.stock)
+  const { sales, purchases } = useSelector((state) => state.stock);
 
   const totalSales = sales
     .map((item) => Number(item.price_total))
-    .reduce((acc, val) => acc + val, 0)
+    .reduce((acc, val) => acc + val, 0);
 
   const totalPurchases = purchases
     .map((item) => Number(item.price_total))
-    .reduce((acc, val) => acc + val, 0)
+    .reduce((acc, val) => acc + val, 0);
 
-  const totalProfit = totalSales - totalPurchases
+  const totalProfit = totalSales - totalPurchases;
+  // data ile cardlarımızı olusturduk.
   const data = [
     {
       id: 1,
@@ -42,7 +48,7 @@ const KpiCards = () => {
       color: amber[600],
       bgColor: amber[100],
     },
-  ]
+  ];
 
   return (
     <Grid container justifyContent={"center"} spacing={3}>
@@ -79,7 +85,7 @@ const KpiCards = () => {
         </Grid>
       ))}
     </Grid>
-  )
-}
+  );
+};
 
-export default KpiCards
+export default KpiCards;
