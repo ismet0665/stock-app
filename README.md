@@ -1,5 +1,7 @@
-# Redux Toolkit Ornegi
 
+![mui](https://user-images.githubusercontent.com/118618011/235322343-21fdc1aa-7923-447a-98d3-b743909c3bb5.gif)
+
+# Redux Toolkit Ornegi
 ## `Kurulum`
 
 ```
